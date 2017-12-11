@@ -1,0 +1,62 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+[compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
+
+ext{
+    mavenUrl = 'http://192.168.88.8:8081/nexus/content/repositories/public'
+	un = 'admin'
+	pw = 'admin123'
+	springboot_starter_version = '1.5.8.RELEASE'
+	thymeleaf_version = '3.0.2.RELEASE'
+}
+
+repositories {
+		mavenLocal()
+		maven { 
+			url mavenUrl
+			credentials {
+				username = un
+			    password = pw
+			}
+		}
+		mavenCentral()
+}
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+	testCompile "org.springframework.boot:spring-boot-starter-test:$springboot_starter_version"
+	//thymeleaf
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springboot_starter_version"
+    compile "org.thymeleaf:thymeleaf:$thymeleaf_version"
+	compile "org.thymeleaf:thymeleaf-spring4:$thymeleaf_version"
+	compile "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.1.1"
+	//datasource
+	compile "org.springframework.boot:spring-boot-starter-data-jpa:$springboot_starter_version"
+	compile "mysql:mysql-connector-java:5.1.41"
+}
+
+mainClassName = "com.novawind.mourn.app.App"
+
+
+task taskA <<{
+   println description
+   println name
+   println project.name
+}
+taskA {
+   description = 'this is task showDescription'
+}
+
+
+
+

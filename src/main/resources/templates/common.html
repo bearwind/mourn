@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+	<header th:fragment="header">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<title>mourn</title>
+		<link rel="icon" type="image/png" href="../image/pizza.png">
+		<link rel="stylesheet" href="../css/amazeui.css">
+		<link rel="stylesheet" href="../css/font-awesome.css">
+		<link rel="stylesheet" href="../css/app.css">
+	 	<script src="../js/jquery.min.js"></script>
+		<script src="../js/amazeui.min.js"></script>
+		<script src="../js/app.js"></script>
+	</header>
+</head>
+<body>
+	<nav class="am-topbar am-topbar-inverse" th:fragment="nav">
+		<h1 th:text="#{app.company}"></h1>
+		<h1 class="am-topbar-brand">导航</h1>
+		<div class="am-collapse am-topbar-collapse " id="doc-topbar-collapse">
+			<ul class="am-nav am-nav-pills am-topbar-nav ">
+				<li class="am-active" id="nav-first"><a href="#">首页</a></li>
+				<li id="common-nav-second"><a href="#">记录查询</a></li>
+				<li id="common-nav-third"><a href="#">记录添加</a></li>
+				<li id="common-nav-fourth"><a href="#">权限管理</a></li>
+				<li id="common-nav-fifth"><a href="#">退出系统</a></li>
+			</ul>
+			
+			<button class="am-btn am-btn-primary">
+  			<i class="am-icon-cog"></i>
+  					设置
+			</button>
+			<div class="am-topbar-right">
+	      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+	        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
+	        <ul class="am-dropdown-content">
+	          <li><a href="#">注册</a></li>
+	          <li><a href="#">随便看看</a></li>
+	        </ul>
+	      </div>
+    	</div>
+		</div>
+	</nav>
+	
+</body>
+</html>

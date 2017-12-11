@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>mourn:login</title>
+<header th:replace="common :: header" />
+  <style>
+  body{
+  	color:white;
+  }
+    .header {
+    	text-align: center;
+    	color:yellow;
+    }
+    .header h1 {
+      font-size: 200%;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body style="background-color: #2a3542">
+	<div class="header">
+		<div class="am-g">
+			<h1 th:text="#{app.company}"></h1>
+			<p>管理系统</p>
+		</div>
+		<hr />
+	</div>
+	<div class="am-g">
+		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+			<h2>欢迎登录</h2>
+			<hr>
+			<div class="am-btn-group"></div>
+			<br>
+			<form method="post" class="am-form am-form-horizontal">
+				<div class="am-input-group">
+					<span class="am-input-group-label">
+					<i class="am-icon-user am-icon-fw"></i></span> 
+					<input type="text" class="am-form-field" placeholder="用户名">
+				</div>
+
+				<br>
+
+				<div class="am-input-group">
+					<span class="am-input-group-label"><i
+						class="am-icon-lock am-icon-fw"></i></span> <input type="text"
+						class="am-form-field" placeholder="密码">
+				</div>
+				<br> 
+				<label for="remember-me"> <input id="remember-me"
+					type="checkbox"> 记住密码
+				</label> <br />
+				<div class="am-cf">
+					<input type="submit" name="" value="登   录"
+						class="am-btn am-btn-primary am-btn-block am-round">
+					<!-- <br>
+        <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr"> -->
+				</div>
+
+			</form>
+			<hr>
+			<p>© 2017 novawind</p>
+		</div>
+	</div>
+</body>
+</html>

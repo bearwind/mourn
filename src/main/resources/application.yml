@@ -1,0 +1,31 @@
+#server
+server:
+  port: 9999
+  #servlet-path: /mourn
+  context-path: /mourn
+#config
+spring:
+  #thymeleaf
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    content-type: text/html
+    #Allow Thymeleaf templates to be reloaded at dev time
+    cache: false
+  messages: 
+    basename: message/app
+  #mysql
+  datasource: 
+    driver-class-name: com.mysql.jdbc.Driver 
+    url: jdbc:mysql://localhost:3306/GlassesProject?characterEncoding=utf-8&useSSL=true
+    name: mysql
+    username: root
+    password: nova
+  jpa: 
+    database: MYSQL
+    hibernate.ddl-auto: update
+    show-sql: true
+  jackson:  
+    serialization:
+      indent_output: true
+      
