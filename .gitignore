@@ -8,3 +8,6 @@
 /target/
 gradlew
 gradle/
+/out/
+.idea/
+mourn.iml
