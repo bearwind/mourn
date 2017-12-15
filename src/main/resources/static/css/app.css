@@ -1,3 +1,16 @@
-/* Write your styles */
+/*regular*/
+.regular-body {background-color: #2a3542;}
+.white-font {color: #E4E4E4;}
 /*frame.html*/
 .index-welcome-img {width: 200px; height: 200px;}
+
+/*error.html*/
+.error-warning {margin: 0 auto;}
+.error-warning-div {margin: 15% auto;text-align: center;}
+.error-warning-div span {font-size: 3.5rem;}
+.error-warning-div button {margin:5% auto;}
+
+/*login.html*/
+.login-header {text-align: center;color: #ffc028;}
+.login-header h1 {font-size: 200%;margin-top: 30px;}
+.login-header p {font-size: 20px;}

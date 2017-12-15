@@ -27,7 +27,6 @@ public class AdminController {
 	}
 	@RequestMapping("/frame")
 	public String frame(){
-		
 		return "frame";
 	}
 	
@@ -44,6 +43,6 @@ public class AdminController {
 		return adminService.getAdmin(id).toString();
 	}
 	
-	
+
 }
 

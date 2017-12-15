@@ -2,26 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>mourn:login</title>
-<header th:replace="common :: header" />
-  <style>
-  body{
-  	color:white;
-  }
-    .header {
-    	text-align: center;
-    	color:yellow;
-    }
-    .header h1 {
-      font-size: 200%;
-      margin-top: 30px;
-    }
-    .header p {
-      font-size: 20px;
-    }
-  </style>
-</head>
-<body style="background-color: #2a3542">
-	<div class="header">
+<header th:replace="common :: header"/></head>
+<body class="regular-body white-font">
+	<div class="login-header">
 		<div class="am-g">
 			<h1 th:text="#{app.company}"></h1>
 			<p>管理系统</p>
