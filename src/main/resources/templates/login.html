@@ -17,31 +17,30 @@
 			<hr>
 			<div class="am-btn-group"></div>
 			<br>
-			<form method="post" class="am-form am-form-horizontal">
-				<div class="am-input-group">
-					<span class="am-input-group-label">
-					<i class="am-icon-user am-icon-fw"></i></span> 
-					<input type="text" class="am-form-field" placeholder="用户名">
+			<form class="am-form am-form-horizontal" id="login-form">
+				<div class="am-panel am-panel-danger hidden">
+					<div class="am-panel-hd">提示信息</div>
 				</div>
-
-				<br>
-
 				<div class="am-input-group">
-					<span class="am-input-group-label"><i
-						class="am-icon-lock am-icon-fw"></i></span> <input type="text"
-						class="am-form-field" placeholder="密码">
+					<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+					<input id="login-name" name="name" type="text" class="am-form-field" placeholder="用户名" data-validation-message="请填写用户名" required/>
+				</div>
+				<br>
+				<div class="am-input-group">
+					<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+					<input id="login-pwd" name="password" type="password" class="am-form-field" placeholder="密码" data-validation-message="请填写密码" required/>
 				</div>
 				<br> 
-				<label for="remember-me"> <input id="remember-me"
-					type="checkbox"> 记住密码
-				</label> <br />
+				<label for="remember-me">
+					<input id="remember-me" type="checkbox"> 记住密码
+				</label>
+				<br>
 				<div class="am-cf">
-					<input type="submit" name="" value="登   录"
-						class="am-btn am-btn-primary am-btn-block am-round">
+					<button type="submit" name=""
+							class="am-btn am-btn-primary am-round am-btn-block" id="login-submit">登&nbsp;&nbsp;录</button>
 					<!-- <br>
         <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr"> -->
 				</div>
-
 			</form>
 			<hr>
 			<p>© 2017 novawind</p>

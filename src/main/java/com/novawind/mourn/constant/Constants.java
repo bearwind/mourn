@@ -1,10 +1,10 @@
-package com.novawind.mourn.util;
+package com.novawind.mourn.constant;
 /**
 *  
 * @author Jeremy Xiong<br>
 * 2017-12-05 16:18:19
 */
-public class ConstantUtil {
+public class Constants {
 	
 	public static final String View_Redirect = "redirect";
 	public static final String View_Forward = "forward";
@@ -15,7 +15,8 @@ public class ConstantUtil {
 	public static final String COMMA = ",";
 	public static final String COLON = ":";
 	public static final String SEMICOLON = ";";
-	
+
+
 	/**
 	 * 
 	 * @param requestMapping /path/to
@@ -24,7 +25,7 @@ public class ConstantUtil {
 	public static String redirect(String requestMapping){
 		return View_Redirect + COLON + requestMapping;
 	}
-	
+
 	/**
 	 * 
 	 * @param requestMapping /path/to

@@ -1,6 +1,9 @@
 /*regular*/
 .regular-body {background-color: #2a3542;}
 .white-font {color: #E4E4E4;}
+.red-font {color: #c7254e}
+.visible {visibility: visible;}
+.hidden {visibility: hidden;}
 /*frame.html*/
 .index-welcome-img {width: 200px; height: 200px;}
 

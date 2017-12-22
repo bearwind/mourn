@@ -1,5 +1,7 @@
 package com.novawind.mourn.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/error")
 public class BaseErrorController implements ErrorController{
-
+    private final Logger logger = LoggerFactory.getLogger(BaseErrorController.class);
 
     @Override
     public String getErrorPath () {
-        System.out.println("error!!");
+        logger.error("something error...");
         return "error";
     }
     @RequestMapping

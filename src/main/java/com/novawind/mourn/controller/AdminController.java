@@ -1,5 +1,7 @@
 package com.novawind.mourn.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,9 @@ import com.novawind.mourn.service.AdminService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    private final Logger logger = LoggerFactory.getLogger(AdminController.class);
+
 	@Autowired
 	private AdminService adminService;
 	

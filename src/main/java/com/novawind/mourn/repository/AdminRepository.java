@@ -14,6 +14,8 @@ import com.novawind.mourn.entity.Admin;
 */
 @Transactional
 public interface AdminRepository extends CrudRepository<Admin, Long>{
+
+    Admin findByName(String name);
 	
 }
 

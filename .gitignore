@@ -11,3 +11,4 @@ gradle/
 /out/
 .idea/
 mourn.iml
+/logs/

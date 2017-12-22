@@ -21,6 +21,8 @@ public class Admin {
 	private String name;
 	@Column(name = "password")
 	private String password;
+	@Column(name = "salt")
+	private String salt;
 	
 	public Long getId() {
 		return id;
@@ -40,11 +42,21 @@ public class Admin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public String toString() {
-		return "Admin [id=" + id + ", name=" + name + ", password=" + password + "]";
+	public String getSalt () {
+		return salt;
 	}
-	
-	
+	public void setSalt (String salt) {
+		this.salt = salt;
+	}
+
+	@Override
+	public String toString () {
+		return "Admin{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", password='" + password + '\'' +
+				", salt='" + salt + '\'' +
+				'}';
+	}
 }
 

@@ -3,8 +3,15 @@ server:
   port: 9999
   #servlet-path: /mourn
   context-path: /mourn
+#  error:
+#    whitelabel:
+#      enabled: false
 #config
 spring:
+  #favicon
+  mvc:
+    favicon:
+      enabled: false
   #thymeleaf
   thymeleaf:
     mode: HTML
@@ -28,4 +35,3 @@ spring:
   jackson:  
     serialization:
       indent_output: true
-      
