@@ -50,15 +50,16 @@ ext{
 }
 
 repositories {
-		mavenLocal()
-		maven { 
-			url mavenUrl
-			credentials {
-				username = un
-			    password = pw
-			}
+	mavenLocal()
+	maven{ url "http://maven.aliyun.com/nexus/content/groups/public"}
+	maven {
+		url mavenUrl
+		credentials {
+			username = un
+			password = pw
 		}
-		mavenCentral()
+	}
+	mavenCentral()
 }
 
 configurations {

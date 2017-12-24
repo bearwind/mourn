@@ -1,11 +1,19 @@
 package com.novawind.mourn.controller;
 
+import com.novawind.mourn.constant.Constants;
+import com.novawind.mourn.constant.ResponseCode;
 import com.novawind.mourn.entity.Admin;
 import com.novawind.mourn.service.AdminService;
+import com.novawind.mourn.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
 *  
@@ -29,11 +37,11 @@ public class AccessController {
 		
 		return "logout";
 	}
-	@RequestMapping("/checkUser")
+	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkUser(Admin admin){
+	public String checkUser(Admin admin,@RequestParam boolean rememberMe, HttpSession session){
 
-		return adminService.checkUser(admin).getCode();
+		return adminService.checkUser(admin, session.getId());
 	}
 }
 

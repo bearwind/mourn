@@ -1,4 +1,7 @@
 package com.novawind.mourn.constant;
+
+import java.util.UUID;
+
 /**
 *  
 * @author Jeremy Xiong<br>
@@ -34,5 +37,11 @@ public class Constants {
 	public static String forward(String requestMapping){
 		return View_Forward + COLON + requestMapping;
 	}
+
+	public static String getSeries(){
+		return UUID.randomUUID().toString().replaceAll(Constants.MIDDLE_LINE, Constants.EMPTY)
+				+ System.currentTimeMillis();
+	}
+
 }
 

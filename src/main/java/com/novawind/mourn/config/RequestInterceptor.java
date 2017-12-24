@@ -15,6 +15,6 @@ public class RequestInterceptor extends HandlerInterceptorAdapter{
     @Override
     public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("放行!");
-        return true;
+        return false;
     }
 }

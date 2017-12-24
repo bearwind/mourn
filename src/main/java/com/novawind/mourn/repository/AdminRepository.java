@@ -2,6 +2,8 @@ package com.novawind.mourn.repository;
 
 
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,9 @@ import com.novawind.mourn.entity.Admin;
 public interface AdminRepository extends CrudRepository<Admin, Long>{
 
     Admin findByName(String name);
-	
+
+    @Modifying
+    @Query(value = "update admin set token = ?2 and series = ?3 where id = ?1", nativeQuery = true)
+    Long updateTokenAndSeries(Long id, String token, String series);
 }
 

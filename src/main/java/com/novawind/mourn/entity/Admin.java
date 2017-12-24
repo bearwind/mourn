@@ -23,6 +23,12 @@ public class Admin {
 	private String password;
 	@Column(name = "salt")
 	private String salt;
+	@Column(name = "token")
+	private String token;
+	@Column(name = "series")
+	private String series;
+	@Column(name = "expireDate")
+	private String expireDate;
 	
 	public Long getId() {
 		return id;
@@ -48,7 +54,24 @@ public class Admin {
 	public void setSalt (String salt) {
 		this.salt = salt;
 	}
-
+	public String getToken () {
+		return token;
+	}
+	public void setToken (String token) {
+		this.token = token;
+	}
+	public String getSeries () {
+		return series;
+	}
+	public void setSeries (String series) {
+		this.series = series;
+	}
+	public String getExpireDate () {
+		return expireDate;
+	}
+	public void setExpireDate (String expireDate) {
+		this.expireDate = expireDate;
+	}
 	@Override
 	public String toString () {
 		return "Admin{" +

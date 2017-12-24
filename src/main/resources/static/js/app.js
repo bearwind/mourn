@@ -3,6 +3,9 @@ $(function(){
 	$.frame.nav();
 	$.login.validate();
 	$.login.submit();
+
+	window.localStorage.setItem("test", "this is a test!");
+	window.localStorage.setItem("test", "2222!");
 })
 
 $.frame = {
@@ -55,12 +58,19 @@ $.login = {
 			if(!_name || !_pwd ){
 				return;
 			}
+			// $.cookie("test","xiongfeng1",{expires:9999,path:"/"});
+			// alert($.cookie("test"));
+
 			$.ajax({
 				type:"POST",
 				url:"../access/checkUser",
-				data:"name="+_name + "&password=" + _pwd,
-				success: function(code){
-					if(code === "01"){
+				data:"name="+_name + "&password=" + _pwd + "&rememberMe="+$("#remember-me").is(":checked"),
+				dataType:"json",
+				success: function(obj){
+					if(obj.code === "01"){
+						if(!obj.token){
+							$.cookie("token", obj.token, {expires:30,path:"/"})
+						}
                         location.href = "../admin/frame";
 					} else {
 						var tip = $(".am-panel");
