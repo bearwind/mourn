@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RecordController {
 	
 	
-	@RequestMapping("/module/query")
+	@RequestMapping("/query")
 	public String queryRecordModule(){
 		
 		
 		return "queryRecord";
 	}
 	
-	@RequestMapping("/module/add")
+	@RequestMapping("/add")
 	public String addRecordModule(){
 		
 		

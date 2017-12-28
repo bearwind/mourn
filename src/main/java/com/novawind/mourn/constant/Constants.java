@@ -18,7 +18,13 @@ public class Constants {
 	public static final String COMMA = ",";
 	public static final String COLON = ":";
 	public static final String SEMICOLON = ";";
-
+	public static final long ONE_DAY_IN_MILLS = 1000 * 60 * 60 * 24L;
+	public static final int ONE_DAY_IN_SECONDS = 60 * 60 * 24;
+	public static final String ACCESS_TOKEN_KEY = "token";
+	public static final String ACCESS_SERIES_KEY = "series";
+	public static final int AUTO_LOGIN_KEEP_DAYS = 30;
+	public static final int SESSION_INVALID_TIME = 60 * 30;
+	public static final String SESSION_KEY = "ADMIN";
 
 	/**
 	 * 

@@ -18,8 +18,8 @@
 			<div class="am-btn-group"></div>
 			<br>
 			<form class="am-form am-form-horizontal" id="login-form">
-				<div class="am-panel am-panel-danger hidden">
-					<div class="am-panel-hd">提示信息</div>
+				<div class="am-panel am-panel-danger hidden" id="login-deny">
+					<div class="am-panel-hd" th:text="${deny}"></div>
 				</div>
 				<div class="am-input-group">
 					<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
@@ -32,7 +32,7 @@
 				</div>
 				<br> 
 				<label for="remember-me">
-					<input id="remember-me" type="checkbox"> 记住密码
+					<input id="remember-me" type="checkbox"> 保持登录
 				</label>
 				<br>
 				<div class="am-cf">

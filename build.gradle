@@ -47,6 +47,7 @@ ext{
 	pw = 'admin123'
 	springboot_starter_version = '1.5.8.RELEASE'
 	thymeleaf_version = '3.0.2.RELEASE'
+	jackson_version = '2.8.7'
 }
 
 repositories {
@@ -76,7 +77,9 @@ dependencies {
 	//datasource
 	compile "org.springframework.boot:spring-boot-starter-data-jpa:$springboot_starter_version"
 	compile "mysql:mysql-connector-java:5.1.41"
-
+	//json
+	compile "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+	compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
 	//compile("org.springframework.boot:spring-boot-starter-security:$springboot_starter_version")
 }
 

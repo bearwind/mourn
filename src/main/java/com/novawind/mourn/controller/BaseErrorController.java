@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 2017-12-13 09:55
  */
 @Controller
-@RequestMapping("/error")
 public class BaseErrorController implements ErrorController{
     private final Logger logger = LoggerFactory.getLogger(BaseErrorController.class);
 
@@ -22,7 +21,7 @@ public class BaseErrorController implements ErrorController{
         logger.error("something error...");
         return "error";
     }
-    @RequestMapping
+    @RequestMapping("/error")
     public String error(Model m){
         m.addAttribute("error", "抱歉，出错了！");
         return getErrorPath();

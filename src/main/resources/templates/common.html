@@ -30,7 +30,7 @@
 				<li id="common-nav-second"><a href="#">记录查询</a></li>
 				<li id="common-nav-third"><a href="#">记录添加</a></li>
 				<li id="common-nav-fourth"><a href="#">权限管理</a></li>
-				<li id="common-nav-fifth"><a href="#">退出系统</a></li>
+				<li id="common-nav-fifth"><a href="#">其他</a></li>
 			</ul>
 			
 			<button class="am-btn am-btn-primary">
@@ -39,15 +39,36 @@
 			</button>
 			<div class="am-topbar-right">
 	      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-	        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
+	        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
+				<i class="am-icon-user"></i>
+				<span th:text="'欢迎:'+ ${session.ADMIN}"></span>
+				<span class="am-icon-caret-down"></span></button>
 	        <ul class="am-dropdown-content">
-	          <li><a href="#">注册</a></li>
-	          <li><a href="#">随便看看</a></li>
+				<li><a href="../access/logout">登出</a></li>
+			  	<li><a href="#"></a></li>
+			  	<li><a></a></li>
 	        </ul>
 	      </div>
     	</div>
 		</div>
 	</nav>
+	<modal th:fragment="modal">
+		<!--<button type="button" class="am-btn am-btn-warning" id="doc-confirm-toggle">
+			Confirm
+		</button>-->
+		<div class="am-modal am-modal-confirm" tabindex="-1" id="common-confirm-div">
+			<div class="am-modal-dialog">
+				<div class="am-modal-hd" th:text="#{app.company}"></div>
+				<div class="am-modal-bd">
+					由于您长时间无操作，会话已过期，而且未启用自动登录，请重新登录。
+				</div>
+				<div class="am-modal-footer">
+					<span class="am-modal-btn" data-am-modal-confirm>确定</span>
+					<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+				</div>
+			</div>
+		</div>
+	</modal>
 	
 </body>
 </html>

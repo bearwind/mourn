@@ -3,14 +3,13 @@ $(function(){
 	$.frame.nav();
 	$.login.validate();
 	$.login.submit();
-
-	window.localStorage.setItem("test", "this is a test!");
-	window.localStorage.setItem("test", "2222!");
+	$.login.showDeny();
+	$.login.hideDeny();
 })
 
 $.frame = {
 	//导航栏操作
-	nav: function(){
+	nav: function () {
 			$(".am-nav li").click(function(){
 				$(this).addClass("am-active");
 				$(this).siblings().removeClass("am-active");
@@ -22,10 +21,10 @@ $.frame = {
 					_url = "../admin/index";
 					break;
 				case "second":
-					_url = "../record/module/query";
+					_url = "../record/query";
 					break;
 				case "third":
-					_url = "../record/module/add";
+					_url = "../record/add";
 					break;
 				case "fourth":
 					_url = "../admin/auth";
@@ -41,7 +40,7 @@ $.frame = {
 
 $.login = {
 	//校验
-    validate: function(){
+    validate: function () {
         $("#login-form").validator({
             onInValid: function(validity) {
                 var $field = $(validity.field);
@@ -51,15 +50,13 @@ $.login = {
             }
         });
     },
-	submit: function(){
+	submit: function () {
 		$("#login-form").submit(function(){
 			var _name = $("#login-name").val();
 			var _pwd = $("#login-pwd").val();
 			if(!_name || !_pwd ){
 				return;
 			}
-			// $.cookie("test","xiongfeng1",{expires:9999,path:"/"});
-			// alert($.cookie("test"));
 
 			$.ajax({
 				type:"POST",
@@ -68,22 +65,54 @@ $.login = {
 				dataType:"json",
 				success: function(obj){
 					if(obj.code === "01"){
-						if(!obj.token){
-							$.cookie("token", obj.token, {expires:30,path:"/"})
-						}
+						$.cookie("token", obj.token, {expires:30,path:"/"})
+						$.cookie("series", obj.series, {expires:30,path:"/"})
                         location.href = "../admin/frame";
 					} else {
 						var tip = $(".am-panel");
-						tip.removeClass("hidden").addClass("visible");
 						tip.children("div").html("用户名或密码错误!");
 					}
 				}
 			});
             return false;
 		})
-	}
+	},
+	showDeny: function () {
+    	var _deny = $("#login-deny");
+		if(_deny.children("div").html()){
+			_deny.removeClass("hidden").addClass("visible");
+		}
+    },
+    hideDeny: function () {
+		$("#login-form").find("input").click(function(){
+            $("#login-deny").removeClass("visible").addClass("hidden")
+		});
+    },
+
+	autoLogin: function () {
+
+    }
+
+
 }
 
+$.ajaxSetup({
+    //type: 'POST',
+    complete: function(xhr,status) {
+        var sessionStatus = xhr.getResponseHeader('sessionStatus');
+        if(sessionStatus === 'timeout') {
+            $("#common-confirm-div").modal({
+                //relatedTarget: this,
+                onConfirm: function(options) {
+                    top.location.href = '../access/login?deny=96';
+                }
+                // closeOnConfirm: false,
+                // onCancel: function() {
+                // }
+            });
+        }
+    }
+});
 
 
 

@@ -27,8 +27,8 @@ public class Admin {
 	private String token;
 	@Column(name = "series")
 	private String series;
-	@Column(name = "expireDate")
-	private String expireDate;
+	@Column(name = "expireTime")
+	private Long expireTime;
 	
 	public Long getId() {
 		return id;
@@ -66,12 +66,13 @@ public class Admin {
 	public void setSeries (String series) {
 		this.series = series;
 	}
-	public String getExpireDate () {
-		return expireDate;
+	public Long getExpireTime () {
+		return expireTime;
 	}
-	public void setExpireDate (String expireDate) {
-		this.expireDate = expireDate;
+	public void setExpireTime (Long expireTime) {
+		this.expireTime = expireTime;
 	}
+
 	@Override
 	public String toString () {
 		return "Admin{" +
@@ -79,6 +80,9 @@ public class Admin {
 				", name='" + name + '\'' +
 				", password='" + password + '\'' +
 				", salt='" + salt + '\'' +
+				", token='" + token + '\'' +
+				", series='" + series + '\'' +
+				", expireTime='" + expireTime + '\'' +
 				'}';
 	}
 }
