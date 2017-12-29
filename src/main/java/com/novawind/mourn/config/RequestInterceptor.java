@@ -2,13 +2,10 @@ package com.novawind.mourn.config;
 
 import com.novawind.mourn.constant.Constants;
 import com.novawind.mourn.constant.ResponseCode;
-import com.novawind.mourn.controller.AccessController;
 import com.novawind.mourn.dto.AdminAccessDto;
 import com.novawind.mourn.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.Cookie;

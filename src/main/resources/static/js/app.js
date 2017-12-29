@@ -1,9 +1,9 @@
 
 $(function(){
+    $.login.showDeny();
 	$.frame.nav();
 	$.login.validate();
 	$.login.submit();
-	$.login.showDeny();
 	$.login.hideDeny();
 })
 
@@ -65,12 +65,13 @@ $.login = {
 				dataType:"json",
 				success: function(obj){
 					if(obj.code === "01"){
-						$.cookie("token", obj.token, {expires:30,path:"/"})
-						$.cookie("series", obj.series, {expires:30,path:"/"})
+						$.cookie("token", obj.token, {expires:30,path:"/"});
+						$.cookie("series", obj.series, {expires:30,path:"/"});
                         location.href = "../admin/frame";
 					} else {
-						var tip = $(".am-panel");
-						tip.children("div").html("用户名或密码错误!");
+                        var _deny = $("#login-deny");
+                        _deny.children("div").html("用户名或密码错误!");
+                        _deny.removeClass("hidden").addClass("visible");
 					}
 				}
 			});

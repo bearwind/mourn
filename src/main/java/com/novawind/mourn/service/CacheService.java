@@ -23,7 +23,7 @@ public class CacheService {
     @Cacheable(value = "admin", key = "#series")
     public Admin getAdminBySeries(String series){
         Admin admin = adminRepository.findBySeries(series);
-        loger.info("已为name为{}的记录缓存 by series: {}", admin.getName(), series);
+        loger.info("已为name为{}的记录缓存 by series: {}", admin != null ? admin.getName() : null, series);
         return admin;
     }
 
