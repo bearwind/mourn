@@ -22,6 +22,6 @@ public class InterceptorRegister extends WebMvcConfigurerAdapter{
     public void addInterceptors (InterceptorRegistry registry) {
         registry.addInterceptor(requestInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/access/*","/error", "/css/**");
+                .excludePathPatterns("/access/*","/error", "/css/**", "/admin/get");
     }
 }

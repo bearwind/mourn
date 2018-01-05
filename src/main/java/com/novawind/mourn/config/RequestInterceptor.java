@@ -3,15 +3,22 @@ package com.novawind.mourn.config;
 import com.novawind.mourn.constant.Constants;
 import com.novawind.mourn.constant.ResponseCode;
 import com.novawind.mourn.dto.AdminAccessDto;
+import com.novawind.mourn.entity.Admin;
 import com.novawind.mourn.service.AdminService;
+import com.novawind.mourn.service.CacheService;
+import com.novawind.mourn.util.LoginManagerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.Base64Utils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.util.Map;
 
 /**
  * @author Jeremy Xiong<br>
@@ -21,21 +28,29 @@ import javax.servlet.http.HttpSession;
 public class RequestInterceptor extends HandlerInterceptorAdapter{
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private CacheService cacheService;
 
     @Override
     public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //0.通过点击登录按钮登录的session != null
-        HttpSession session = request.getSession();
-        if(session.getAttribute(Constants.SESSION_KEY) != null){
-            return true;
+        //0.获取cache
+        Map<String, String> cookieMap = LoginManagerUtil.cookieMap(request);
+        if(cookieMap != null){
+            String series = cookieMap.get(Constants.ACCESS_SERIES_KEY);
+            if(StringUtils.hasText(series)){
+                    Admin cache = cacheService.getAdminCacheById(
+                        Long.parseLong(URLDecoder.decode(series, Constants.UTF8).split(Constants.COLON)[0]));
+                if(cache != null) return true;
+            }
         }
-        //session失效后操作:
+
+        //cache不存在(替代session)
         //1.判断token和series是否合法
         AdminAccessDto verify = adminService.checkTokenAndSeries(request);
         boolean access = verify.getResponseCode() == ResponseCode.SUCCESS;
         if(!access){
             //2.判断是否为ajax请求
-            if(isAjax(request)) {
+            if(LoginManagerUtil.isAjax(request)) {
                 response.setHeader("sessionStatus", "timeout");
             //3.非ajax请求
             } else {
@@ -49,15 +64,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter{
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        session.setAttribute(Constants.SESSION_KEY, verify.getName());
-        session.setMaxInactiveInterval(Constants.SESSION_INVALID_TIME);
-
         return true;
-    }
-
-    private boolean isAjax(HttpServletRequest request){
-
-        return request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equals("XMLHttpRequest");
     }
 
 }

@@ -29,8 +29,8 @@ public interface AdminRepository extends CrudRepository<Admin, Long>{
     void updateToken(Long id, String token);
 
     @Modifying
-    @Query(value = "update admin set expire_time = 0 where name = ?1", nativeQuery = true)
-    int invalidToken(String name);
+    @Query(value = "update admin set expire_time = 0 where id = ?1", nativeQuery = true)
+    int invalidToken(Long id);
 
 }
 

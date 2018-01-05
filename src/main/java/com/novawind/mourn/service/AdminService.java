@@ -5,6 +5,7 @@ import com.novawind.mourn.constant.ResponseCode;
 import com.novawind.mourn.dto.AdminAccessDto;
 import com.novawind.mourn.entity.Admin;
 import com.novawind.mourn.repository.AdminRepository;
+import com.novawind.mourn.util.LoginManagerUtil;
 import com.novawind.mourn.util.MD5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 /**
@@ -30,8 +31,9 @@ public class AdminService {
 	@Autowired
 	private AdminRepository adminRepository;
 
+	@Cacheable(value = "admin", key = "#id")
 	public Admin getAdmin(Long id){
-
+		//loger.info("id为{}已缓存 by test", id);
 		return adminRepository.findOne(id);
 	}
 
@@ -50,14 +52,18 @@ public class AdminService {
 		}
 
 		String token = MD5Util.md5Upper(sessionId + db.getName() + db.getSalt());
-		String series = Constants.getSeries();
+		String series = Constants.getSeries(db.getId());
 		//增加2s 完成请求
 		Long expireTime = System.currentTimeMillis() + 2 * 1000;
 		//if rememberMe is on, set expireTime = currentMills + 30days in mills
 		if(rememberMe){
 			expireTime = expireTime + Constants.ONE_DAY_IN_MILLS * Constants.AUTO_LOGIN_KEEP_DAYS;
 		}
-		adminRepository.updateTokenAndSeries(db.getId(), token, series, expireTime);
+		cacheService.updateTokenAndSeries(db, token, series, expireTime);
+//		else {
+//			adminRepository.updateTokenAndSeries(db.getId(), token, series, expireTime);
+//		}
+
 		dto.setToken(token);
 		dto.setSeries(series);
 		dto.setCode(ResponseCode.SUCCESS.getCode());
@@ -69,7 +75,7 @@ public class AdminService {
 		AdminAccessDto dto = new AdminAccessDto();
 		dto.setResponseCode(ResponseCode.COOKIE_DISABLED);
 
-		Map<String, String> cookieMap = cookieMap(request);
+		Map<String, String> cookieMap = LoginManagerUtil.cookieMap(request);
 		if(cookieMap == null){
 			dto.setResponseCode(null);
 			loger.info("cookie被禁用或被删除");
@@ -82,9 +88,14 @@ public class AdminService {
 			loger.info("cookie不存在有效token和series");
 			return dto;
 		}
-		Admin ts = cacheService.getAdminBySeries(series);
+		try {
+			series = URLDecoder.decode(series, Constants.UTF8);
+		} catch (UnsupportedEncodingException e) {
+			loger.error("series:{} url解码失败", series);
+		}
+		Admin ts = cacheService.checkSeriesById(Long.parseLong(series.split(Constants.COLON)[0]));
 		//series不存在，未曾登录，跳转login
-		if(ts == null) {
+		if(ts == null || ts.getSeries() == null) {
 			loger.info("series:{}不存在", series);
 			return dto;
 		}
@@ -111,20 +122,10 @@ public class AdminService {
 		return dto;
 	}
 
-	private static Map<String, String> cookieMap(HttpServletRequest request){
-		Cookie[] cookies = request.getCookies();
-		if(cookies == null){
-			return null;
-		}
-		Map<String, String> map = new HashMap<>();
-		for (Cookie cookie : cookies) {
-			map.put(cookie.getName(), cookie.getValue());
-		}
-		return map;
-	}
 
-	public boolean logout(String name){
-		int a = adminRepository.invalidToken(name);
+
+	public boolean logout(Long id){
+		int a = cacheService.invalidToken(id);
 		return a > 0;
 	}
 

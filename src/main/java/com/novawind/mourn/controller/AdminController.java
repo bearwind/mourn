@@ -1,15 +1,19 @@
 package com.novawind.mourn.controller;
 
+import com.novawind.mourn.service.AdminService;
+import com.novawind.mourn.service.CacheService;
+import com.novawind.mourn.util.LoginManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.novawind.mourn.service.AdminService;
+import javax.servlet.http.HttpServletRequest;
 
 /**
 *  
@@ -24,14 +28,22 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-	
+	@Autowired
+	private EhCacheCacheManager ehCacheCacheManager;
+	@Autowired
+	private CacheService cacheService;
+
 	@RequestMapping("/index")
 	public String index(Model m){
 		
 		return "index";
 	}
 	@RequestMapping("/frame")
-	public String frame(){
+	public String frame(HttpServletRequest request){
+		Long id = LoginManagerUtil.getIdByDecodeSeriesInCookie(request);
+		if(id != null){
+			request.setAttribute("adminName", cacheService.getAdminCacheById(id).getName());
+		}
 		return "frame";
 	}
 	
@@ -43,9 +55,11 @@ public class AdminController {
 	
 	@RequestMapping("/get")
 	@ResponseBody
-	public String get(@RequestParam Long id){
-		
-		return adminService.getAdmin(id).toString();
+	public String get(@RequestParam String id){
+		if(id.equals("0")){
+			return ehCacheCacheManager.getCacheManager().getCache("admin").getKeys().toString();
+		}
+		return cacheService.checkSeriesById(Long.parseLong(id)).toString();
 	}
 	
 

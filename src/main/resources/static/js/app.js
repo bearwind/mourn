@@ -30,7 +30,7 @@ $.frame = {
 					_url = "../admin/auth";
 					break;
 				default:
-					_url = "../access/logout";
+					_url = "../access/other";
 					break;
 				}
 				$(".frame_main").load(_url);

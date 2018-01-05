@@ -1,5 +1,6 @@
 package com.novawind.mourn.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.novawind.mourn.constant.ResponseCode;
 
 /**
@@ -13,6 +14,7 @@ public class AdminAccessDto {
     private String code;
     private String sessionId;
     private String name;
+    @JsonIgnore
     private ResponseCode responseCode;
 
     public String getToken () {

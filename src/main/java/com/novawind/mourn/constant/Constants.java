@@ -18,13 +18,15 @@ public class Constants {
 	public static final String COMMA = ",";
 	public static final String COLON = ":";
 	public static final String SEMICOLON = ";";
+	public static final String EQUALITY = "=";
 	public static final long ONE_DAY_IN_MILLS = 1000 * 60 * 60 * 24L;
 	public static final int ONE_DAY_IN_SECONDS = 60 * 60 * 24;
 	public static final String ACCESS_TOKEN_KEY = "token";
 	public static final String ACCESS_SERIES_KEY = "series";
-	public static final int AUTO_LOGIN_KEEP_DAYS = 30;
-	public static final int SESSION_INVALID_TIME = 60 * 30;
+	public static final int AUTO_LOGIN_KEEP_DAYS = 7;
+	public static final int SESSION_INVALID_TIME = 10;
 	public static final String SESSION_KEY = "ADMIN";
+	public static final String UTF8 = "UTF-8";
 
 	/**
 	 * 
@@ -44,8 +46,10 @@ public class Constants {
 		return View_Forward + COLON + requestMapping;
 	}
 
-	public static String getSeries(){
-		return UUID.randomUUID().toString().replaceAll(Constants.MIDDLE_LINE, Constants.EMPTY)
+	public static String getSeries(Long id){
+		return    id
+				+ COLON
+				+ UUID.randomUUID().toString().replaceAll(Constants.MIDDLE_LINE, Constants.EMPTY)
 				+ System.currentTimeMillis();
 	}
 
