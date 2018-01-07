@@ -77,7 +77,6 @@ public class AdminService {
 
 		Map<String, String> cookieMap = LoginManagerUtil.cookieMap(request);
 		if(cookieMap == null){
-			dto.setResponseCode(null);
 			loger.info("cookie被禁用或被删除");
 			return dto;
 		}
