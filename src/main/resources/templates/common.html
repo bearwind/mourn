@@ -39,7 +39,7 @@
 	      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
 	        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
 				<i class="am-icon-user"></i>
-				<span th:text="'欢迎:'+ ${#httpServletRequest.getParameter('adminName')}"></span>
+				<span th:text="'欢迎:'+ ${adminName}"></span>
 				<span class="am-icon-caret-down"></span></button>
 	        <ul class="am-dropdown-content">
 				<li><a href="../access/logout">登出</a></li>
