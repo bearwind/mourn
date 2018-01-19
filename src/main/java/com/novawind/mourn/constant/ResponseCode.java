@@ -30,7 +30,7 @@ public enum ResponseCode {
                 return value.getMsg();
             }
         }
-        return UNKNOW.getMsg();
+        throw new IllegalArgumentException("no such ReponseCode infered by code \"" + code + "\"!");
     }
 
     public String getCode () {

@@ -13,8 +13,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Base64Utils;
-import sun.misc.BASE64Decoder;
 
 /**
  * 缓存操作类

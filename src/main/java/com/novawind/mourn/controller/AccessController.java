@@ -1,6 +1,5 @@
 package com.novawind.mourn.controller;
 
-import com.novawind.mourn.constant.Constants;
 import com.novawind.mourn.constant.ResponseCode;
 import com.novawind.mourn.dto.AdminAccessDto;
 import com.novawind.mourn.entity.Admin;

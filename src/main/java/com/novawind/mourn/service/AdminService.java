@@ -60,9 +60,6 @@ public class AdminService {
 			expireTime = expireTime + Constants.ONE_DAY_IN_MILLS * Constants.AUTO_LOGIN_KEEP_DAYS;
 		}
 		cacheService.updateTokenAndSeries(db, token, series, expireTime);
-//		else {
-//			adminRepository.updateTokenAndSeries(db.getId(), token, series, expireTime);
-//		}
 
 		dto.setToken(token);
 		dto.setSeries(series);
