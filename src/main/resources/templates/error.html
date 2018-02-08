@@ -7,7 +7,8 @@
 <body class="regular-body">
 <div class="error-warning-div">
     <span class="error-warning am-icon-btn am-danger am-icon-warning white-font"></span>
-    <span class="white-font">抱歉，系统开小差了！</span><br>
+    <span class="white-font" th:text="${httpStatus} == 404 ? '抱歉，资源迷失在黑洞中...':'抱歉，系统开小差了...'"></span><br>
+    <span class="white-font" th:text="'神秘代码：' + ${httpStatus}"></span><br>
     <button class="am-btn am-btn-primary am-btn-xl" onclick="history.back();">返回</button>
 </div>
 

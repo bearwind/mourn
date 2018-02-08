@@ -1,5 +1,6 @@
 package com.novawind.mourn.service;
 
+import com.novawind.mourn.config.annotations.TestOnly;
 import com.novawind.mourn.constant.Constants;
 import com.novawind.mourn.constant.ResponseCode;
 import com.novawind.mourn.dto.AdminAccessDto;
@@ -31,6 +32,7 @@ public class AdminService {
 	@Autowired
 	private AdminRepository adminRepository;
 
+	@TestOnly
 	@Cacheable(value = "admin", key = "#id")
 	public Admin getAdmin(Long id){
 		//loger.info("id为{}已缓存 by test", id);
