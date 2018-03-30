@@ -1,11 +1,13 @@
 /*regular*/
 .regular-body {background-color: #2a3542;}
 .white-font {color: #E4E4E4;}
-.red-font {color: #c7254e}
+.red-font {color: #c7254e;}
 .visible {visibility: visible;}
 .hidden {visibility: hidden;}
 .smart-hr-line {background-color:#ffc028;border: none;height: 2px;}
 .transparent-input {background-color: transparent !important;color:#E4E4E4 !important;}
+.regular-footer {bottom: 0; position: fixed; width: 100%;}
+
 /*frame.html*/
 .index-welcome-img {width: 200px; height: 200px;}
 
@@ -19,3 +21,8 @@
 .login-header {text-align: center;color: #ffc028;}
 .login-header h1 {font-size: 200%;margin-top: 30px;}
 .login-header p {font-size: 20px;}
+.am-topbar-nav li a{tab-index: -1;}
+
+/*addRecord.html*/
+.record-div {margin:0 auto;}
+.record-table {width: 50%; height: 25%;}

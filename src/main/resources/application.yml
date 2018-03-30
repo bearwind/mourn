@@ -38,3 +38,10 @@ spring:
   cache:
     ehcache:
       config: classpath:ehcache.xml
+
+#customized properties
+mourn:
+  config:
+    auto_login_keep_days: 7
+#    session_invalid_seconds: 10
+#    max_cache_count: 100

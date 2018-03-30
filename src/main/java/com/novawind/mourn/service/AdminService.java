@@ -1,5 +1,6 @@
 package com.novawind.mourn.service;
 
+import com.novawind.mourn.config.MournConfig;
 import com.novawind.mourn.config.annotations.TestOnly;
 import com.novawind.mourn.constant.Constants;
 import com.novawind.mourn.constant.ResponseCode;
@@ -27,6 +28,8 @@ import java.util.Map;
 @Service
 public class AdminService {
 	private final Logger loger = LoggerFactory.getLogger(AdminService.class);
+	@Autowired
+	private MournConfig mournConfig;
 	@Autowired
 	private CacheService cacheService;
 	@Autowired
@@ -59,7 +62,7 @@ public class AdminService {
 		Long expireTime = System.currentTimeMillis() + 2 * 1000;
 		//if rememberMe is on, set expireTime = currentMills + 30days in mills
 		if(rememberMe){
-			expireTime = expireTime + Constants.ONE_DAY_IN_MILLS * Constants.AUTO_LOGIN_KEEP_DAYS;
+			expireTime = expireTime + Constants.ONE_DAY_IN_MILLS * mournConfig.getAutoLoginKeepDays();
 		}
 		cacheService.updateTokenAndSeries(db, token, series, expireTime);
 

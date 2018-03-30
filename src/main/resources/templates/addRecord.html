@@ -5,12 +5,231 @@
 </head>
 <body>
 	<div class="am-panel am-panel-warning" id="content-first">
-			<div class="am-panel-hd">记录添加</div>
-	  		<div class="am-panel-bd">
-	  			<span>add</span>
-	  		</div>
-	  		<div class="am-panel-footer">footer</div>
-		</div>
+		<div class="am-panel-hd">
+            <span class="am-badge am-badge-warning am-text-lg">
+                记录添加
+            </span>
+            <span class="am-badge am-badge-success am-round am-text-default">
+                绿色高亮处为必填项
+            </span>
+        </div>
+		<div class="am-panel-bd">
+			<div class="record-div">
+                <form class="am-form-group">
+                    <table class="am-table am-table-bordered am-table-radius am-table-striped am-text-nowrap record-table">
+                        <tr>
+                            <td colspan="2" class="am-text-center">
+                                <span class="red-font">基本信息：</span>
+                            </td>
+                            <td colspan="5" class="am-text-center">
+                                <span class="red-font">验光记录： </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="record-field priority-tableIndex">
+                                <label for="customerNumber">客户编号：</label>
+                            </td>
+                            <td>
+                                <input type="text" class="am-form-field am-input-sm" name="customerNumber" id="customerNumber" value="" readonly="readonly"/>
+                            </td>
+                            <td class="record-field"></td>
 
+                            <td class="record-field">
+                                <label for="rightDegree1">球&nbsp;&nbsp;镜</label>
+                            </td>
+                            <td class="record-field">
+                                <label for="rightDegree2">柱&nbsp;&nbsp;镜</label>
+                            </td>
+                            <td class="record-field">
+                                <label for="rightView">轴&nbsp;&nbsp;位</label>
+                            </td>
+                            <td class="record-field">
+                                <label for="correctRight">矫&nbsp;&nbsp;正</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="record-field am-success">
+                                <label for="name" class="am-form-label">客户姓名：</label>
+                            </td>
+                            <td class="am-success">
+                                <input tabindex="1" type="text" class="am-form-field am-input-sm" name="name" id="name"/>
+                            </td>
+                            <td class="record-field am-text-center">
+                                <span class="red-font">R</span>
+                            </td>
+
+                            <td>
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="rightDegree1" value="-" id="rightDegree1"/>
+                                </label>
+                            </td>
+                            <td >
+                                <input type="text" class="am-form-field am-input-sm" name="rightDegree2" id="rightDegree2" />
+                            </td>
+                            <td>
+                                 <input type="text" class="am-form-field am-input-sm" name="rightView" id="rightView" />
+                            </td>
+                            <td >
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="correctRight" id="correctRight" />
+                                </label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="record-field priority-tableIndex">
+                                <label for="age">年&nbsp;&nbsp;龄：</label>
+                            </td>
+
+                            <td><input tabindex="1" type="text" class="am-form-field am-input-sm" name="age" id="age" />
+                            </td>
+                            <td class="record-field am-text-center">
+                                <span class="red-font">L</span>
+                            </td>
+                            <td>
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="leftDegree1" value="-" id="leftDegree1"/>
+                                </label>
+                            </td>
+                            <td >
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="leftDegree2" id="leftDegree2" />
+                                </label>
+                            </td>
+                            <td >
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="leftView" id="leftView" />
+                                </label>
+                            </td>
+                            <td>
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="correctLeft" id="correctLeft"/>
+                                </label>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="record-field">
+                                <label>性&nbsp;&nbsp;别：</label>
+                            </td>
+                            <td>
+                                <label class="am-radio-inline">
+                                    <input tabindex="1" name="gender" type="radio" value="男" class="gender"/>男
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input tabindex="1" name="gender" type="radio" value="女" class="gender"/>女
+                                </label>
+                            </td>
+                            <td class="record-field am-text-middle" rowspan="4">
+                                <span class="red-font">其他信息</span>
+                            </td>
+                            <td class="record-field">
+                                <label for="distance">瞳&nbsp;&nbsp;距：</label>
+                            </td>
+                            <td> <input type="text" class="am-form-field am-input-sm" name="distance"
+                                        id="distance"/> </td>
+                            <td class="record-field">
+                                <label for="type">框架类型：</label>
+                            </td>
+                            <td>
+                                <select name="type" id="type">
+                                    <option style="display:none;">请选择</option>
+                                    <option>隐形</option>
+                                    <option>框架</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="record-field">
+                                <label for="company">公&nbsp;&nbsp;司：</label>
+                            </td>
+                            <td>
+                                <label>
+                                    <input tabindex="1" type="text" class="am-form-field am-input-sm" name="company" id="company" value=""/>
+                                </label>
+                            </td>
+
+                            <td class="record-field">
+                                <label for="glassesBrand">镜片品牌：</label>
+                            </td>
+                            <td >
+                                 <input type="text" class="am-form-field am-input-sm" name="glassesBrand" id="glassesBrand" onkeyup="autoGetGlasses()"/>
+                            </td>
+                            <td class="record-field">
+                                <label for="frameBrand">镜框品牌：</label>
+                            </td>
+                            <td>
+                                <input type="text" class="am-form-field am-input-sm" name="frameBrand" id="frameBrand" onkeyup="autoGetBrand()"/>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="record-field">
+                                <label for="occupation">职&nbsp;&nbsp;业：</label>
+                            </td>
+                            <td>
+                                <label>
+                                    <input tabindex="1" type="text" class="am-form-field am-input-sm" name="occupation" id="occupation" value=""/>
+                                </label>
+                            </td>
+                            <td class="record-field">
+                                <label for="examer">验光师：</label>
+                            </td>
+                            <td>
+                                <input type="text" class="am-form-field am-input-sm" name="examer" id="examer" />
+                            </td>
+                            <td class="record-field">
+                                <label for="maker">配镜师：</label>
+                            </td>
+                            <td >
+                                <input type="text" class="am-form-field am-input-sm" name="maker" id="maker" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="record-field">
+                                <label for="phone">电&nbsp;&nbsp;话：</label>
+                            </td>
+                            <td>
+                                <input tabindex="1" type="text" class="am-form-field am-input-sm" name="phone" id="phone" value=""/>
+                            </td>
+                            <td class="record-field">
+                                <label for="payment">实际付款：</label>
+                            </td>
+                            <td>
+                                <label>
+                                    <input type="text" class="am-form-field am-input-sm" name="payment" id="payment"/>
+                                </label>
+                            </td>
+                            <td class="record-field am-success">
+                                <label for="date">配镜日期：</label>
+                            </td>
+                            <td class="am-success">
+                                <input type="text" class="laydate-icon am-form-field am-input-sm" name="date" id="date" onclick="laydate({choose:addDateCookie})"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="record-field">
+                                <label for="wechat">微&nbsp;&nbsp;信</label>
+                            </td>
+                            <td>
+                                <input tabindex="1" type="text" class="am-form-field am-input-sm" name="wechat" id="wechat" value=""/>
+                            </td>
+                            <td class="record-field">
+                                <label for="mark" class="am-form-label">备&nbsp;&nbsp;注：</label>
+                            </td>
+                            <td colspan="4">
+                                <input type="text" class="text am-form-field am-input-sm" name="mark" id="mark"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

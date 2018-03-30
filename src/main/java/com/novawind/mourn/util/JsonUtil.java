@@ -37,7 +37,7 @@ public class JsonUtil {
 	/**
 	 * json转对象
 	 * @param <T> generic java type
-	 * @param json String
+	 * @param json String`
 	 * @param clazz json to be converted with this class which represents a type
 	 * @return
 	 */

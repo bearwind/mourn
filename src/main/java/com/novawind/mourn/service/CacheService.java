@@ -1,7 +1,9 @@
 package com.novawind.mourn.service;
 
+import com.novawind.mourn.constant.Constants;
 import com.novawind.mourn.entity.Admin;
 import com.novawind.mourn.repository.AdminRepository;
+import com.novawind.mourn.util.EhcacheUtil;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 import org.slf4j.Logger;
@@ -27,7 +29,7 @@ public class CacheService {
     @Autowired
     private AdminRepository adminRepository;
     @Autowired
-    private EhCacheCacheManager ehCacheCacheManager;
+    private EhcacheUtil ehcacheUtil;
 
     @Cacheable(key = "#id", unless = "#result == null")
     public Admin checkSeriesById (Long id){
@@ -53,12 +55,8 @@ public class CacheService {
 
 
     public Admin getAdminCacheById(Long key){
-        Cache cache = ehCacheCacheManager.getCacheManager().getCache("admin");
-        Element e;
-        if(cache != null && (e = cache.get(key)) != null){
-            return (Admin)e.getObjectValue();
-        }
-        return null;
+
+        return ehcacheUtil.getCacheValue(Constants.ADMIN_CACHE_NAME, key, Admin.class);
     }
 
 

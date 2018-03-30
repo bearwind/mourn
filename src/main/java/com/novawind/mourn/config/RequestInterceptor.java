@@ -25,6 +25,8 @@ import java.util.Map;
 @Configuration
 public class RequestInterceptor extends HandlerInterceptorAdapter{
     @Autowired
+    private MournConfig mournConfig;
+    @Autowired
     private AdminService adminService;
     @Autowired
     private CacheService cacheService;
@@ -58,7 +60,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter{
         }
         //4.合法，则设置新token及session
         Cookie cookie = new Cookie(Constants.ACCESS_TOKEN_KEY, verify.getToken());
-        cookie.setMaxAge(Constants.ONE_DAY_IN_SECONDS * Constants.AUTO_LOGIN_KEEP_DAYS);
+        cookie.setMaxAge(Constants.ONE_DAY_IN_SECONDS * mournConfig.getAutoLoginKeepDays());
         cookie.setPath("/");
         response.addCookie(cookie);
 

@@ -7,9 +7,10 @@
 <body>
 	<nav th:replace="common :: nav"/>
 	<div class="frame_main">
-		<div th:replace="index :: content"/>
+		<!--<div th:replace="index :: content"/>-->
 	</div>
-	<modal th:replace="common :: modal"/>
-
+	<modal th:replace="common :: modal-session-out"/>
+	<modal th:replace="common :: modal-not-found"/>
+	<footer th:replace="common :: footer"></footer>
 </body>
 </html>

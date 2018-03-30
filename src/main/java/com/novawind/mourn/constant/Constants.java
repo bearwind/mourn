@@ -23,9 +23,7 @@ public class Constants {
 	public static final int ONE_DAY_IN_SECONDS = 60 * 60 * 24;
 	public static final String ACCESS_TOKEN_KEY = "token";
 	public static final String ACCESS_SERIES_KEY = "series";
-	public static final int AUTO_LOGIN_KEEP_DAYS = 7;
-	public static final int SESSION_INVALID_TIME = 10;
-	public static final String SESSION_KEY = "ADMIN";
+	public static final String ADMIN_CACHE_NAME = "admin";
 	public static final String UTF8 = "UTF-8";
 
 	/**

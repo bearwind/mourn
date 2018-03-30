@@ -1,15 +1,12 @@
 package com.novawind.test;
 
+import com.novawind.mourn.config.MournConfig;
 import com.novawind.mourn.constant.Constants;
-import com.novawind.mourn.dto.AdminAccessDto;
 import com.novawind.mourn.repository.AdminRepository;
-import com.novawind.mourn.util.JsonUtil;
 import com.novawind.mourn.util.SpringAppContextUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Base64Utils;
-
-import java.util.UUID;
 
 /**
  * @author Jeremy Xiong<br>
@@ -18,6 +15,8 @@ import java.util.UUID;
 public class TestAdmin extends JunitTestConfig{
     @Autowired
     private AdminRepository adminRepository;
+    @Autowired
+    private MournConfig mournConfig;
 
     public static void main (String[] args) {
         String s = Constants.getSeries(3L);
@@ -30,6 +29,11 @@ public class TestAdmin extends JunitTestConfig{
     public void test(){
         //System.out.println(adminRepository.findByName("admin"));
         System.out.println(SpringAppContextUtil.getBean(AdminRepository.class).findByName("admin"));
+    }
+    @Test
+    public void config(){
+        System.out.println(mournConfig);
+        System.out.println(mournConfig.getAutoLoginKeepDays());
     }
 
 }

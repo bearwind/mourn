@@ -5,13 +5,14 @@
 </head>
 <body>
 	<div class="am-panel am-panel-secondary" id="content-first"  th:fragment="content">
-			<div class="am-panel-hd" th:text="欢迎访问 + #{app.company}"></div>
+			<div class="am-panel-hd">
+				<span class="am-badge am-badge-primary am-text-lg" th:text="欢迎访问 + #{app.company}"></span>
+			</div>
 	  		<div class="am-panel-bd">
 	  			<div>
 					<img alt="" src="../image/pizza.png" class="index-welcome-img am-circle">
 				</div>
 	  		</div>
-	  		<div class="am-panel-footer">footer</div>
 		</div>
 </body>
 </html>
