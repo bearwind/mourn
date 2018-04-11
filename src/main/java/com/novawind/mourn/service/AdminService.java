@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Map;
+import java.util.Random;
 
 /**
 *  
@@ -60,11 +61,14 @@ public class AdminService {
 		String series = Constants.getSeries(db.getId());
 		//增加2s 完成请求
 		Long expireTime = System.currentTimeMillis() + 2 * 1000;
-		//if rememberMe is on, set expireTime = currentMills + 30days in mills
+		//if rememberMe is on, set expireTime = currentMills + ?(in config) days in mills
 		if(rememberMe){
 			expireTime = expireTime + Constants.ONE_DAY_IN_MILLS * mournConfig.getAutoLoginKeepDays();
 		}
-		cacheService.updateTokenAndSeries(db, token, series, expireTime);
+		db.setToken(token);
+		db.setSeries(series);
+		db.setExpireTime(expireTime);
+		cacheService.cacheNewLogin(db);
 
 		dto.setToken(token);
 		dto.setSeries(series);
@@ -94,30 +98,30 @@ public class AdminService {
 		} catch (UnsupportedEncodingException e) {
 			loger.error("series:{} url解码失败", series);
 		}
-		Admin ts = cacheService.checkSeriesById(Long.parseLong(series.split(Constants.COLON)[0]));
+		Admin cache = cacheService.checkSeriesById(Long.parseLong(series.split(Constants.COLON)[0]));
 		//series不存在，未曾登录，跳转login
-		if(ts == null || ts.getSeries() == null) {
+		if(cache == null || cache.getSeries() == null) {
 			loger.info("series:{}不存在", series);
 			return dto;
 		}
 		//token不一致，cookie被盗用（token每次登录都会更换）
-		if(!token.equals(ts.getToken())) {
+		if(!token.equals(cache.getToken())) {
 			loger.info("series:{}，token不匹配", series);
 			return dto;
 		}
 		//token过期 or 未设置rememberMe功能 跳转login
-		if(ts.getExpireTime() <= System.currentTimeMillis()) {
+		if(cache.getExpireTime() <= System.currentTimeMillis()) {
 			loger.info("token不在有效期内");
 			return dto;
 		}
 		//验证通过 更换token
-		String newToken = MD5Util.md5Upper(request.getSession().getId() + ts.getName() + ts.getSalt());
-		ts.setToken(newToken);
-		adminRepository.updateToken(ts.getId(), newToken);
+		String newToken = MD5Util.md5Upper(request.getSession().getId() + dto + cache.getName() + cache.getSalt());
+		cache.setToken(newToken);
+		adminRepository.save(cache);
 		loger.info("验证通过，更换token为{}", newToken);
 
 		dto.setToken(newToken);
-		dto.setName(ts.getName());
+		dto.setName(cache.getName());
 		dto.setResponseCode(ResponseCode.SUCCESS);
 
 		return dto;

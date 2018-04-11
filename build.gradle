@@ -85,21 +85,12 @@ dependencies {
 	//compile("org.springframework.boot:spring-boot-starter-security:$springboot_starter_version")
 
 	//ehcache
-	compile "org.springframework.boot:spring-boot-starter-cache:$springboot_starter_version"
+	compile "org.spri ngframework.boot:spring-boot-starter-cache:$springboot_starter_version"
     compile "net.sf.ehcache:ehcache:$ehcache_version"
 }
 
 mainClassName = "com.novawind.mourn.app.App"
 
-
-task taskA <<{
-   println description
-   println name
-   println project.name
-}
-taskA {
-   description = 'this is task showDescription'
-}
 
 
 

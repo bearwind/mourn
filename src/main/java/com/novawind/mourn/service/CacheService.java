@@ -38,13 +38,9 @@ public class CacheService {
         return admin;
     }
     @CachePut(key = "#result.getId()")
-    public Admin updateTokenAndSeries(Admin admin, String token, String series, Long expireTime){
-        adminRepository.updateTokenAndSeries(admin.getId(), token, series, expireTime);
-        admin.setToken(token);
-        admin.setSeries(series);
-        admin.setExpireTime(expireTime);
-
-        loger.info("已为id为{}的记录缓存 by update token & series: {}", admin.getId(), series);
+    public Admin cacheNewLogin(Admin admin){
+        adminRepository.save(admin);
+        loger.info("已为id为{}的记录缓存 by update token & series: {}", admin.getId(), admin.getSeries());
         return admin;
     }
     @CacheEvict

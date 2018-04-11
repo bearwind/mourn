@@ -2,15 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title th:text="#{app.company}"></title>
-<src th:replace="common :: header"/>
+	<src th:replace="common :: header"/>
+	<script src="../js/frame.js"></script>
 </head>
 <body>
 	<nav th:replace="common :: nav"/>
 	<div class="frame_main">
 		<!--<div th:replace="index :: content"/>-->
 	</div>
-	<modal th:replace="common :: modal-session-out"/>
-	<modal th:replace="common :: modal-not-found"/>
+	<modal th:replace="common :: modal-alert"/>
+	<loading th:replace="common :: loading-spin"/>
 	<footer th:replace="common :: footer"></footer>
+<!--<script type="text/javascript">
+	$(function(){
+		$("#common-load-spin").modal('open');
+        $("#common-load-spin").modal('close');
+	})
+</script>-->
 </body>
 </html>

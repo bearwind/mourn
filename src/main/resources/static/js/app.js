@@ -1,85 +1,10 @@
 
 $(function(){
-    $.framePage.nav();
-    $.framePage.navRefresh();
-    $.framePage.popState();
     $.login.showDeny();
 	$.login.validate();
 	$.login.submit();
 	$.login.hideDeny();
 });
-
-$.framePage = {
-	//导航栏操作
-	nav: function () {
-			$(".am-nav li").click(function(){
-				$(this).addClass("am-active");
-				$(this).siblings().removeClass("am-active");
-				var _id = $(this).attr("id");
-				var _order = _id.substring(_id.lastIndexOf("-") + 1);
-				var _hash = "#"+_order;
-                $.framePage.loadPage(_hash);
-			});
-		},
-
-    navRefresh: function(){
-        var _hash = window.location.hash;
-        if(_hash === ""){
-            _hash = "#default";
-        }
-        this.menuActive(_hash);
-        this.loadPage(_hash);
-    },
-    menuActive: function(_hash){
-        var _active = $("#common-nav-" + _hash.substring(1));
-        _active.addClass("am-active");
-        _active.siblings().removeClass("am-active");
-    },
-    loadPage: function (_hash){
-	    var _url = "";
-        switch (_hash) {
-            case "#second":
-                _url = "../record/query";
-                break;
-            case "#third":
-                _url = "../record/add";
-                break;
-            case "#fourth":
-                _url = "../admin/auth";
-                break;
-            case "#fifth":
-                _url = "../access/other";
-                break;
-            default:
-                _url = "../admin/index";
-                break;
-        }
-        $(".frame_main").load(_url, function(response,status,xhr){
-            if(xhr.status === 404 || xhr.status === 500){
-                //location.href = "error";
-                $("#common-confirm-div-notfound").modal({
-                });
-            } else {
-                history.replaceState(_hash, null, "../admin/frame" + _hash);
-                //alert("2. loadState  = " + history.state);
-                //window.location.hash = _hash;
-            }
-        });
-    },
-    popState : function(){
-        window.addEventListener("popstate", function() {
-            var _hash = history.state;
-            //alert("1. popState = " + _hash);
-            if(_hash != null){
-                $.framePage.menuActive(_hash);
-                $.framePage.loadPage(_hash);
-            }
-        });
-    }
-
-
-};
-
 
 $.login = {
 	//校验
@@ -145,7 +70,8 @@ $.ajaxSetup({
     complete: function(xhr,status) {
         var sessionStatus = xhr.getResponseHeader('sessionStatus');
         if(sessionStatus === 'timeout') {
-            $("#common-confirm-div-sessionout").modal({
+            $(".am-modal-bd").html("由于您长时间无操作，会话已过期，而且未启用自动登录，请重新登录。");
+            $("#common-modal-alert").modal({
                 //relatedTarget: this,
                 onConfirm: function(options) {
                     top.location.href = '../access/login?deny=96';
@@ -155,7 +81,8 @@ $.ajaxSetup({
                 // }
             });
         }
-    }
+    },
+	cache:true
 });
 
 

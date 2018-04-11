@@ -21,15 +21,7 @@ public interface AdminRepository extends CrudRepository<Admin, Long>{
     Admin findBySeries(String series);
 
     @Modifying
-    @Query(value = "update admin set token = ?2, series = ?3, expire_time = ?4 where id = ?1", nativeQuery = true)
-    void updateTokenAndSeries(Long id, String token, String series, Long expireTime);
-
-    @Modifying
-    @Query(value = "update admin set token = ?2 where id = ?1", nativeQuery = true)
-    void updateToken(Long id, String token);
-
-    @Modifying
-    @Query(value = "update admin set expire_time = 0 where id = ?1", nativeQuery = true)
+    @Query(value = "update Admin a set a.expireTime = 0 where a.id = ?1")
     int invalidToken(Long id);
 
 }
